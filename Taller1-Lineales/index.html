@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taller 1 - Ejercicios Lineales</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 800px; margin: 40px auto; padding: 0 20px; }
+        a { display: inline-block; margin: 6px; padding: 10px 14px; border: 1px solid #333; text-decoration: none; color: #111; border-radius: 6px; }
+        a:hover { background: #eee; }
+    </style>
+</head>
+<body>
+    <h1>Taller 1 - Ejercicios Lineales</h1>
+    <p>Seleccione un ejercicio para ejecutarlo.</p>
+
+    <div>
+        <a href="?ejercicio=1">Ejercicio 1</a>
+        <a href="?ejercicio=2">Ejercicio 2</a>
+        <a href="?ejercicio=3">Ejercicio 3</a>
+        <a href="?ejercicio=4">Ejercicio 4</a>
+        <a href="?ejercicio=5">Ejercicio 5</a>
+        <a href="?ejercicio=6">Ejercicio 6</a>
+        <a href="?ejercicio=7">Ejercicio 7</a>
+    </div>
+
+    <p id="mensaje"></p>
+
+    <script>
+        const parametros = new URLSearchParams(window.location.search);
+        const ejercicio = parametros.get("ejercicio");
+
+        if (ejercicio >= 1 && ejercicio <= 7) {
+            document.getElementById("mensaje").textContent = "Ejecutando ejercicio " + ejercicio;
+            const script = document.createElement("script");
+            script.src = "ejercicio" + ejercicio + ".js";
+            document.body.appendChild(script);
+        }
+    </script>
+</body>
+</html>
