@@ -1,7 +1,7 @@
 // Ejercicio 5 - Precio de un producto e IVA
 
 let precio = parseFloat(prompt("Ingrese el precio del producto sin IVA"));
-let porcentajeIva = parseFloat(prompt("Ingrese el porcentaje de IVA"));
+let porcentajeIva = 19;
 
 let iva = precio * (porcentajeIva / 100);
 let total = precio + iva;
