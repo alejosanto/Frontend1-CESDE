@@ -5,10 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Taller 1 - Ejercicios Lineales</title>
     <style>
-        body { font-family: Arial, sans-serif; max-width: 800px; margin: 40px auto; padding: 0 20px; }
+        body { font-family: Arial, sans-serif; max-width: 850px; margin: 40px auto; padding: 0 20px; }
         a { display: inline-block; margin: 6px; padding: 10px 14px; border: 1px solid #333; text-decoration: none; color: #111; border-radius: 6px; }
         a:hover { background: #eee; }
-        #resultado { margin-top: 24px; padding: 16px; border: 1px solid #999; border-radius: 6px; min-height: 80px; white-space: pre-line; }
+        .bloque { margin-top: 22px; padding: 16px; border: 1px solid #999; border-radius: 6px; }
+        #resultado { white-space: pre-line; }
     </style>
 </head>
 <body>
@@ -25,32 +26,46 @@
         <a href="?ejercicio=7">Ejercicio 7</a>
     </div>
 
-    <p id="mensaje"></p>
+    <div class="bloque">
+        <h2>¿Qué pide el ejercicio?</h2>
+        <p id="enunciado">Seleccione un ejercicio para ver el enunciado.</p>
+        <p id="datos"></p>
+    </div>
 
-    <h2>Resultado</h2>
-    <div id="resultado">Seleccione un ejercicio para comenzar.</div>
+    <div class="bloque">
+        <h2>Resultado</h2>
+        <div id="resultado">Seleccione un ejercicio para comenzar.</div>
+    </div>
 
     <script>
+        const ejercicios = {
+            1: { enunciado: "Calcular el salario de un empleado después de descontar 4% de salud y 7% de pensión.", datos: "Dato solicitado: salario del empleado." },
+            2: { enunciado: "Calcular el área de un triángulo usando la fórmula área = (base × altura) / 2.", datos: "Datos solicitados: base y altura." },
+            3: { enunciado: "Ingresar dos números y mostrar suma, resta, multiplicación, división y módulo.", datos: "Datos solicitados: dos números." },
+            4: { enunciado: "Calcular el salario mensual teniendo en cuenta horas trabajadas y el valor de la hora normal y extra.", datos: "Datos solicitados: horas y valores necesarios para calcular el salario." },
+            5: { enunciado: "Ingresar el precio de un producto, calcular el IVA del 19% y mostrar precio sin IVA, valor del IVA y total a pagar.", datos: "Dato solicitado: precio del producto." },
+            6: { enunciado: "Calcular el porcentaje de hombres y mujeres de un grupo de estudiantes.", datos: "Datos solicitados: cantidad de hombres y cantidad de mujeres." },
+            7: { enunciado: "Calcular el promedio de tres notas entre 1 y 5.", datos: "Datos solicitados: tres notas." }
+        };
+
         const resultado = document.getElementById("resultado");
         const promptOriginal = window.prompt;
         const alertOriginal = window.alert;
         const logOriginal = console.log;
 
         function agregarResultado(texto) {
-            if (resultado.textContent === "Seleccione un ejercicio para comenzar.") {
-                resultado.textContent = "";
-            }
+            if (resultado.textContent === "Seleccione un ejercicio para comenzar.") resultado.textContent = "";
             resultado.textContent += texto + "\n";
         }
 
         window.prompt = function(mensaje) {
             const respuesta = promptOriginal(mensaje);
-            agregarResultado(mensaje + ": " + respuesta);
+            agregarResultado("Dato ingresado - " + mensaje + ": " + respuesta);
             return respuesta;
         };
 
         window.alert = function(mensaje) {
-            agregarResultado(mensaje);
+            agregarResultado("Resultado: " + mensaje);
             alertOriginal(mensaje);
         };
 
@@ -62,8 +77,9 @@
         const parametros = new URLSearchParams(window.location.search);
         const ejercicio = parametros.get("ejercicio");
 
-        if (ejercicio >= 1 && ejercicio <= 7) {
-            document.getElementById("mensaje").textContent = "Ejecutando ejercicio " + ejercicio;
+        if (ejercicios[ejercicio]) {
+            document.getElementById("enunciado").textContent = ejercicios[ejercicio].enunciado;
+            document.getElementById("datos").textContent = ejercicios[ejercicio].datos;
             resultado.textContent = "";
             const script = document.createElement("script");
             script.src = "ejercicio" + ejercicio + ".js";
