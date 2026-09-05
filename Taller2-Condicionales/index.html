@@ -5,10 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Taller 2 - Condicionales</title>
     <style>
-        body { font-family: Arial, sans-serif; max-width: 800px; margin: 40px auto; padding: 0 20px; }
+        body { font-family: Arial, sans-serif; max-width: 850px; margin: 40px auto; padding: 0 20px; }
         a { display: inline-block; margin: 6px; padding: 10px 14px; border: 1px solid #333; text-decoration: none; color: #111; border-radius: 6px; }
         a:hover { background: #eee; }
-        #resultado { margin-top: 24px; padding: 16px; border: 1px solid #999; border-radius: 6px; min-height: 80px; white-space: pre-line; }
+        .bloque { margin-top: 22px; padding: 16px; border: 1px solid #999; border-radius: 6px; }
+        #resultado { white-space: pre-line; }
     </style>
 </head>
 <body>
@@ -26,32 +27,47 @@
         <a href="?ejercicio=8">Ejercicio 8</a>
     </div>
 
-    <p id="mensaje"></p>
+    <div class="bloque">
+        <h2>¿Qué pide el ejercicio?</h2>
+        <p id="enunciado">Seleccione un ejercicio para ver el enunciado.</p>
+        <p id="datos"></p>
+    </div>
 
-    <h2>Resultado</h2>
-    <div id="resultado">Seleccione un ejercicio para comenzar.</div>
+    <div class="bloque">
+        <h2>Resultado</h2>
+        <div id="resultado">Seleccione un ejercicio para comenzar.</div>
+    </div>
 
     <script>
+        const ejercicios = {
+            1: { enunciado: "Pedir un número y determinar si es par o impar y si es positivo o negativo, usando condicionales.", datos: "Dato solicitado: un número." },
+            2: { enunciado: "Pedir dos números y determinar cuál es mayor y cuál es menor.", datos: "Datos solicitados: dos números." },
+            3: { enunciado: "Pedir un número del 1 al 7 y mostrar el día de la semana correspondiente.", datos: "Dato solicitado: número del 1 al 7." },
+            4: { enunciado: "Clasificar la etapa de una persona según su edad: adolescente, adulto adolescente, adulto o adulto mayor.", datos: "Dato solicitado: edad." },
+            5: { enunciado: "Realizar una factura con tres productos. En efectivo se paga el total, con cupón se descuenta 3% y a crédito se aumenta 5%.", datos: "Datos solicitados: valor de tres productos y forma de pago." },
+            6: { enunciado: "Ingresar tres notas, calcular el promedio y mostrar el nivel del alumno según el rango obtenido.", datos: "Datos solicitados: tres notas." },
+            7: { enunciado: "Calcular la edad actual de una persona a partir de su día, mes y año de nacimiento.", datos: "Datos solicitados: día, mes y año de nacimiento." },
+            8: { enunciado: "Calcular cuánto se debe pagar por hospitalización en la clínica Me Muero, según días de hospitalización y edad del paciente, incluyendo el recargo correspondiente.", datos: "Datos solicitados: días de hospitalización y edad del paciente." }
+        };
+
         const resultado = document.getElementById("resultado");
         const promptOriginal = window.prompt;
         const alertOriginal = window.alert;
         const logOriginal = console.log;
 
         function agregarResultado(texto) {
-            if (resultado.textContent === "Seleccione un ejercicio para comenzar.") {
-                resultado.textContent = "";
-            }
+            if (resultado.textContent === "Seleccione un ejercicio para comenzar.") resultado.textContent = "";
             resultado.textContent += texto + "\n";
         }
 
         window.prompt = function(mensaje) {
             const respuesta = promptOriginal(mensaje);
-            agregarResultado(mensaje + ": " + respuesta);
+            agregarResultado("Dato ingresado - " + mensaje + ": " + respuesta);
             return respuesta;
         };
 
         window.alert = function(mensaje) {
-            agregarResultado(mensaje);
+            agregarResultado("Resultado: " + mensaje);
             alertOriginal(mensaje);
         };
 
@@ -63,8 +79,9 @@
         const parametros = new URLSearchParams(window.location.search);
         const ejercicio = parametros.get("ejercicio");
 
-        if (ejercicio >= 1 && ejercicio <= 8) {
-            document.getElementById("mensaje").textContent = "Ejecutando ejercicio " + ejercicio;
+        if (ejercicios[ejercicio]) {
+            document.getElementById("enunciado").textContent = ejercicios[ejercicio].enunciado;
+            document.getElementById("datos").textContent = ejercicios[ejercicio].datos;
             resultado.textContent = "";
             const script = document.createElement("script");
             script.src = "ejercicio" + ejercicio + ".js";
