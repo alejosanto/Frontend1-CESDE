@@ -5,53 +5,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Taller 3 - Ciclos</title>
     <style>
-        body { font-family: Arial, sans-serif; max-width: 850px; margin: 40px auto; padding: 0 20px; }
-        a { display: inline-block; margin: 6px; padding: 10px 14px; border: 1px solid #333; text-decoration: none; color: #111; border-radius: 6px; }
-        a:hover { background: #eee; }
-        .bloque { margin-top: 22px; padding: 16px; border: 1px solid #999; border-radius: 6px; }
-        #resultado { white-space: pre-line; }
+        body { font-family: Arial, sans-serif; max-width: 950px; margin: 40px auto; padding: 0 20px; }
+        .ejercicio { display: grid; grid-template-columns: 130px 1fr; gap: 18px; align-items: center; padding: 16px 0; border-bottom: 1px solid #ddd; }
+        .ejercicio a { display: inline-block; padding: 10px 14px; border: 1px solid #333; text-decoration: none; color: #111; border-radius: 6px; text-align: center; }
+        .ejercicio a:hover { background: #eee; }
+        .ejercicio p { margin: 0; line-height: 1.45; }
+        #resultado { margin-top: 28px; padding: 16px; border: 1px solid #999; border-radius: 6px; min-height: 80px; white-space: pre-line; }
+        @media (max-width: 650px) { .ejercicio { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
     <h1>Taller 3 - Ciclos</h1>
-    <p>Seleccione un ejercicio para ejecutarlo.</p>
+    <p>Ejercicios para repetir instrucciones con ciclos, usar contadores y acumuladores y combinar ciclos con condiciones.</p>
 
-    <div>
-        <a href="?ejercicio=1">Ejercicio 1</a>
-        <a href="?ejercicio=2">Ejercicio 2</a>
-        <a href="?ejercicio=3">Ejercicio 3</a>
-        <a href="?ejercicio=4">Ejercicio 4</a>
-        <a href="?ejercicio=5">Ejercicio 5</a>
-        <a href="?ejercicio=6">Ejercicio 6</a>
-        <a href="?ejercicio=7">Ejercicio 7</a>
-        <a href="?ejercicio=8">Ejercicio 8</a>
-        <a href="?ejercicio=9">Ejercicio 9</a>
-    </div>
+    <div class="ejercicio"><a href="?ejercicio=1">Ejercicio 1</a><p><strong>Suma de números naturales:</strong> ingresar un número N y sumar todos los números naturales desde 1 hasta N.</p></div>
+    <div class="ejercicio"><a href="?ejercicio=2">Ejercicio 2</a><p><strong>Promedio de notas:</strong> ingresar el nombre de un estudiante y una cantidad N de notas, calcular el promedio y mostrar si aprueba o reprueba. Se aprueba con promedio de 3 o más.</p></div>
+    <div class="ejercicio"><a href="?ejercicio=3">Ejercicio 3</a><p><strong>Números hasta FIN:</strong> ingresar varios números enteros, contar cuántos se ingresaron y sumar sus valores. El proceso termina cuando se escribe FIN.</p></div>
+    <div class="ejercicio"><a href="?ejercicio=4">Ejercicio 4</a><p><strong>Tabla de multiplicar:</strong> ingresar un número y mostrar su tabla de multiplicar desde 1 hasta 30.</p></div>
+    <div class="ejercicio"><a href="?ejercicio=5">Ejercicio 5</a><p><strong>Tabla descendente:</strong> ingresar un número y mostrar su tabla de multiplicar de forma descendente desde 30 hasta 1.</p></div>
+    <div class="ejercicio"><a href="?ejercicio=6">Ejercicio 6</a><p><strong>Conteo por intervalos:</strong> ingresar un número de intervalo y mostrar un conteo desde 1 hasta 30 avanzando según ese intervalo.</p></div>
+    <div class="ejercicio"><a href="?ejercicio=7">Ejercicio 7</a><p><strong>Conteo regresivo por intervalos:</strong> ingresar un intervalo y realizar el conteo desde 30 hacia atrás usando ese valor.</p></div>
+    <div class="ejercicio"><a href="?ejercicio=8">Ejercicio 8</a><p><strong>Edades de estudiantes:</strong> pedir la edad de 10 estudiantes y determinar cuántos son menores de edad y cuántos son mayores de edad.</p></div>
+    <div class="ejercicio"><a href="?ejercicio=9">Ejercicio 9</a><p><strong>Adivinar número aleatorio:</strong> generar un número aleatorio con <code>Math.random()</code>, pedir al usuario que intente adivinarlo y permitir un máximo de 3 intentos.</p></div>
 
-    <div class="bloque">
-        <h2>¿Qué pide el ejercicio?</h2>
-        <p id="enunciado">Seleccione un ejercicio para ver el enunciado.</p>
-        <p id="datos"></p>
-    </div>
-
-    <div class="bloque">
-        <h2>Resultado</h2>
-        <div id="resultado">Seleccione un ejercicio para comenzar.</div>
-    </div>
+    <h2>Resultado</h2>
+    <div id="resultado">Seleccione un ejercicio para comenzar.</div>
 
     <script>
-        const ejercicios = {
-            1: { enunciado: "Calcular la suma de los N números naturales, donde N es el número límite ingresado.", datos: "Dato solicitado: número límite N." },
-            2: { enunciado: "Pedir el nombre de un estudiante y N notas, calcular el promedio y determinar si aprueba o reprueba. Aprueba con promedio de 3.", datos: "Datos solicitados: nombre, cantidad de notas y cada nota." },
-            3: { enunciado: "Ingresar varios números enteros, mostrar cuántos se ingresaron y la suma de todos. Repetir hasta escribir FIN.", datos: "Datos solicitados: números enteros hasta ingresar FIN." },
-            4: { enunciado: "Realizar la tabla de multiplicar de cualquier número ingresado hasta el 30.", datos: "Dato solicitado: número de la tabla." },
-            5: { enunciado: "Crear la tabla de multiplicar de cualquier número ingresado de manera descendente.", datos: "Dato solicitado: número de la tabla." },
-            6: { enunciado: "Crear un ciclo que cuente del 1 al 30 en intervalos del número ingresado.", datos: "Dato solicitado: tamaño del intervalo." },
-            7: { enunciado: "Crear un ciclo que cuente del 1 al 30 en intervalos del número ingresado, de manera regresiva.", datos: "Dato solicitado: tamaño del intervalo." },
-            8: { enunciado: "Pedir la edad a 10 estudiantes y determinar cuántos son menores de edad y cuántos son mayores de edad.", datos: "Datos solicitados: edad de 10 estudiantes." },
-            9: { enunciado: "Generar un número aleatorio y compararlo con el número que digite el usuario. Tiene 3 intentos para acertar.", datos: "Datos solicitados: número del usuario en cada intento." }
-        };
-
         const resultado = document.getElementById("resultado");
         const promptOriginal = window.prompt;
         const alertOriginal = window.alert;
@@ -60,12 +40,12 @@
 
         window.prompt = function(mensaje) {
             const respuesta = promptOriginal(mensaje);
-            resultado.innerHTML += "Dato ingresado - " + mensaje + ": " + respuesta + "<br>";
+            resultado.innerHTML += "Pregunta: " + mensaje + "<br>Respuesta: " + respuesta + "<br><br>";
             return respuesta;
         };
 
         window.alert = function(mensaje) {
-            resultado.innerHTML += "Resultado: " + mensaje + "<br>";
+            resultado.innerHTML += "Mensaje: " + mensaje + "<br><br>";
             alertOriginal(mensaje);
         };
 
@@ -80,10 +60,7 @@
 
         const parametros = new URLSearchParams(window.location.search);
         const ejercicio = parametros.get("ejercicio");
-
-        if (ejercicios[ejercicio]) {
-            document.getElementById("enunciado").textContent = ejercicios[ejercicio].enunciado;
-            document.getElementById("datos").textContent = ejercicios[ejercicio].datos;
+        if (ejercicio >= 1 && ejercicio <= 9) {
             resultado.innerHTML = "";
             const script = document.createElement("script");
             script.src = "ejercicio" + ejercicio + ".js";
