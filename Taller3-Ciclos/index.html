@@ -35,7 +35,6 @@
         const resultado = document.getElementById("resultado");
         const promptOriginal = window.prompt;
         const alertOriginal = window.alert;
-        const writeOriginal = document.write.bind(document);
         const logOriginal = console.log.bind(console);
 
         window.prompt = function(mensaje) {
@@ -60,7 +59,11 @@
 
         const parametros = new URLSearchParams(window.location.search);
         const ejercicio = parametros.get("ejercicio");
+
         if (ejercicio >= 1 && ejercicio <= 9) {
+            //quitar el ejercicio de la URL para que al refrescar no se vuelva a ejecutar
+            history.replaceState({}, document.title, window.location.pathname);
+
             resultado.innerHTML = "";
             const script = document.createElement("script");
             script.src = "ejercicio" + ejercicio + ".js";
