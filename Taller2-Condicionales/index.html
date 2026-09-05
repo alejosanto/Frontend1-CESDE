@@ -59,7 +59,11 @@
 
         const parametros = new URLSearchParams(window.location.search);
         const ejercicio = parametros.get("ejercicio");
+
         if (ejercicio >= 1 && ejercicio <= 8) {
+            //quitar el ejercicio de la URL para que al refrescar no se vuelva a ejecutar
+            history.replaceState({}, document.title, window.location.pathname);
+
             resultado.textContent = "";
             const script = document.createElement("script");
             script.src = "ejercicio" + ejercicio + ".js";
