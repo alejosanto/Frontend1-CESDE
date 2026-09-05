@@ -1,20 +1,16 @@
-// Ejercicio 7 - Calcular edad actual con fecha de nacimiento
+// Ejercicio 7 - calcular edad actual
 
-let dia = parseInt(prompt("Ingrese el día de nacimiento"));
-let mes = parseInt(prompt("Ingrese el mes de nacimiento"));
-let anio = parseInt(prompt("Ingrese el año de nacimiento"));
+let dia = Number(prompt("Ingrese el dia de nacimiento"));
+let mes = Number(prompt("Ingrese el mes de nacimiento"));
+let anio = Number(prompt("Ingrese el año de nacimiento"));
 
 let fechaNacimiento = new Date(anio, mes - 1, dia);
 let fechaActual = new Date();
-
 let edad = fechaActual.getFullYear() - fechaNacimiento.getFullYear();
 
-if (
-    fechaActual.getMonth() < fechaNacimiento.getMonth() ||
-    (fechaActual.getMonth() === fechaNacimiento.getMonth() &&
-    fechaActual.getDate() < fechaNacimiento.getDate())
-) {
-    edad = edad - 1;
+if (fechaActual.getMonth() < fechaNacimiento.getMonth() || (fechaActual.getMonth() === fechaNacimiento.getMonth() && fechaActual.getDate() < fechaNacimiento.getDate())) {
+    edad--;
 }
 
-alert("La edad actual es: " + edad + " años");
+document.write("Fecha de nacimiento: " + dia + "/" + mes + "/" + anio + "<br>");
+document.write("Edad actual: " + edad + " años");

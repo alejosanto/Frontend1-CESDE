@@ -1,12 +1,14 @@
-// Ejercicio 2 - Número mayor y menor
+// Ejercicio 2 - numero mayor y menor
 
-let numero1 = Number(prompt("Ingrese el primer número"));
-let numero2 = Number(prompt("Ingrese el segundo número"));
+let numero1 = Number(prompt("Ingrese el primer numero"));
+let numero2 = Number(prompt("Ingrese el segundo numero"));
 
 if (numero1 > numero2) {
-    alert("El número mayor es: " + numero1 + " y el menor es: " + numero2);
+    document.write("Numero mayor: " + numero1 + "<br>");
+    document.write("Numero menor: " + numero2);
 } else if (numero2 > numero1) {
-    alert("El número mayor es: " + numero2 + " y el menor es: " + numero1);
+    document.write("Numero mayor: " + numero2 + "<br>");
+    document.write("Numero menor: " + numero1);
 } else {
-    alert("Los dos números son iguales");
+    document.write("Los dos numeros son iguales");
 }

@@ -1,73 +1,27 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Taller 1 - Ejercicios Lineales</title>
-    <style>
-        body { font-family: Arial, sans-serif; max-width: 950px; margin: 40px auto; padding: 0 20px; }
-        .ejercicio { display: grid; grid-template-columns: 130px 1fr; gap: 18px; align-items: center; padding: 16px 0; border-bottom: 1px solid #ddd; }
-        .ejercicio a { display: inline-block; padding: 10px 14px; border: 1px solid #333; text-decoration: none; color: #111; border-radius: 6px; text-align: center; }
-        .ejercicio a:hover { background: #eee; }
-        .ejercicio p { margin: 0; line-height: 1.45; }
-        #resultado { margin-top: 28px; padding: 16px; border: 1px solid #999; border-radius: 6px; min-height: 80px; white-space: pre-line; }
-        @media (max-width: 650px) { .ejercicio { grid-template-columns: 1fr; } }
-    </style>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Taller 1 - Ejercicios Lineales</title>
+<style>
+body{font-family:Arial,sans-serif;max-width:950px;margin:40px auto;padding:0 20px}.volver{display:inline-block;margin-bottom:20px;text-decoration:none;color:#111}.ejercicio{display:grid;grid-template-columns:130px 1fr;gap:18px;align-items:center;padding:16px 0;border-bottom:1px solid #ddd}.ejercicio a{display:inline-block;padding:10px 14px;border:1px solid #333;text-decoration:none;color:#111;border-radius:6px;text-align:center}.ejercicio a:hover{background:#eee}.ejercicio p{margin:0;line-height:1.45}#resultado{margin-top:28px;padding:16px;border:1px solid #999;border-radius:6px;min-height:80px}@media(max-width:650px){.ejercicio{grid-template-columns:1fr}}
+</style>
 </head>
 <body>
-    <h1>Taller 1 - Ejercicios Lineales</h1>
-    <p>Ejercicios para aplicar fundamentos básicos de JavaScript mediante datos de entrada, operaciones y resultados.</p>
-
-    <div class="ejercicio"><a href="?ejercicio=1">Ejercicio 1</a><p><strong>Salario neto:</strong> ingresar un salario, calcular el descuento del 4% de salud y 7% de pensión, y mostrar el salario final.</p></div>
-    <div class="ejercicio"><a href="?ejercicio=2">Ejercicio 2</a><p><strong>Área de un triángulo:</strong> ingresar base y altura y calcular el área usando la fórmula (base × altura) / 2.</p></div>
-    <div class="ejercicio"><a href="?ejercicio=3">Ejercicio 3</a><p><strong>Operaciones básicas:</strong> ingresar dos números y mostrar suma, resta, multiplicación, división y módulo.</p></div>
-    <div class="ejercicio"><a href="?ejercicio=4">Ejercicio 4</a><p><strong>Salario mensual:</strong> calcular el pago de un trabajador a partir de horas trabajadas y valores de hora normal y extra.</p></div>
-    <div class="ejercicio"><a href="?ejercicio=5">Ejercicio 5</a><p><strong>IVA:</strong> ingresar el precio de un producto, calcular el IVA del 19% y mostrar precio sin IVA, valor del IVA y total a pagar.</p></div>
-    <div class="ejercicio"><a href="?ejercicio=6">Ejercicio 6</a><p><strong>Porcentaje de estudiantes:</strong> ingresar cantidad de hombres y mujeres y calcular qué porcentaje representa cada grupo.</p></div>
-    <div class="ejercicio"><a href="?ejercicio=7">Ejercicio 7</a><p><strong>Promedio de notas:</strong> ingresar tres notas entre 1 y 5 y calcular el promedio.</p></div>
-
-    <h2>Resultado</h2>
-    <div id="resultado">Seleccione un ejercicio para comenzar.</div>
-
-    <script>
-        const resultado = document.getElementById("resultado");
-        const promptOriginal = window.prompt;
-        const alertOriginal = window.alert;
-        const logOriginal = console.log;
-
-        function agregarResultado(texto) {
-            if (resultado.textContent === "Seleccione un ejercicio para comenzar.") resultado.textContent = "";
-            resultado.textContent += texto + "\n";
-        }
-
-        window.prompt = function(mensaje) {
-            const respuesta = promptOriginal(mensaje);
-            agregarResultado(mensaje + ": " + respuesta);
-            return respuesta;
-        };
-
-        window.alert = function(mensaje) {
-            agregarResultado(mensaje);
-            alertOriginal(mensaje);
-        };
-
-        console.log = function(...datos) {
-            agregarResultado(datos.join(" "));
-            logOriginal(...datos);
-        };
-
-        const parametros = new URLSearchParams(window.location.search);
-        const ejercicio = parametros.get("ejercicio");
-
-        if (ejercicio >= 1 && ejercicio <= 7) {
-            //quitar el ejercicio de la URL para que al refrescar no se vuelva a ejecutar
-            history.replaceState({}, document.title, window.location.pathname);
-
-            resultado.textContent = "";
-            const script = document.createElement("script");
-            script.src = "ejercicio" + ejercicio + ".js";
-            document.body.appendChild(script);
-        }
-    </script>
-</body>
-</html>
+<a class="volver" href="../">← Volver a Frontend 1</a>
+<h1>Taller 1 - Ejercicios Lineales</h1>
+<p>Ejercicios para aplicar fundamentos básicos de JavaScript mediante datos de entrada, operaciones y resultados.</p>
+<div class="ejercicio"><a href="?ejercicio=1">Ejercicio 1</a><p><strong>Salario neto:</strong> ingresar un salario, calcular 4% de salud y 7% de pensión y mostrar el salario final.</p></div>
+<div class="ejercicio"><a href="?ejercicio=2">Ejercicio 2</a><p><strong>Área de un triángulo:</strong> ingresar base y altura y calcular (base × altura) / 2.</p></div>
+<div class="ejercicio"><a href="?ejercicio=3">Ejercicio 3</a><p><strong>Operaciones básicas:</strong> ingresar dos números y mostrar suma, resta, multiplicación, división y módulo.</p></div>
+<div class="ejercicio"><a href="?ejercicio=4">Ejercicio 4</a><p><strong>Sueldo mensual:</strong> calcular el pago por horas normales y horas extras.</p></div>
+<div class="ejercicio"><a href="?ejercicio=5">Ejercicio 5</a><p><strong>IVA:</strong> ingresar el precio de un producto, calcular IVA del 19% y total a pagar.</p></div>
+<div class="ejercicio"><a href="?ejercicio=6">Ejercicio 6</a><p><strong>Porcentaje de estudiantes:</strong> calcular porcentaje de hombres y mujeres.</p></div>
+<div class="ejercicio"><a href="?ejercicio=7">Ejercicio 7</a><p><strong>Promedio de notas:</strong> ingresar tres notas entre 1 y 5 y calcular el promedio.</p></div>
+<h2>Resultado</h2><div id="resultado">Seleccione un ejercicio para comenzar.</div>
+<script>
+const resultado=document.getElementById('resultado');const promptOriginal=window.prompt;const alertOriginal=window.alert;const logOriginal=console.log.bind(console);
+window.prompt=function(m){const r=promptOriginal(m);resultado.innerHTML+='Pregunta: '+m+'<br>Respuesta: '+r+'<br><br>';return r};window.alert=function(m){resultado.innerHTML+='Mensaje: '+m+'<br><br>';alertOriginal(m)};console.log=function(...d){resultado.innerHTML+=d.join(' ')+'<br>';logOriginal(...d)};document.write=function(t){resultado.innerHTML+=t};
+const p=new URLSearchParams(window.location.search);const e=p.get('ejercicio');if(e>=1&&e<=7){history.replaceState({},document.title,window.location.pathname);resultado.innerHTML='';const s=document.createElement('script');s.src='ejercicio'+e+'.js';document.body.appendChild(s)}
+</script>
+</body></html>

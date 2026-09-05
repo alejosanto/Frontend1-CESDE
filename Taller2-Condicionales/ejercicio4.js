@@ -1,13 +1,13 @@
-// Ejercicio 4 - Clasificar la etapa de una persona por edad
+// Ejercicio 4 - clasificar etapa segun la edad
 
-let edad = Number(prompt("Ingrese su edad"));
+let edad = Number(prompt("Ingrese la edad"));
 
 if (edad < 18) {
-    alert("Adolescente");
-} else if (edad >= 18 && edad <= 28) {
-    alert("Adulto adolescente");
-} else if (edad >= 29 && edad <= 49) {
-    alert("Adulto");
+    document.write("Adolescente");
+} else if (edad <= 28) {
+    document.write("Adulto adolescente");
+} else if (edad <= 49) {
+    document.write("Adulto");
 } else {
-    alert("Adulto mayor");
+    document.write("Adulto mayor");
 }

@@ -1,8 +1,13 @@
-// Ejercicio 2 - Area de un triangulo
+// Ejercicio 2 - area de un triangulo
 
-let base = parseFloat(prompt("Ingrese la base del triangulo"));
-let altura = parseFloat(prompt("Ingrese la altura del triangulo"));
+// pedir los datos
+let base = Number(prompt("Ingrese la base del triangulo"));
+let altura = Number(prompt("Ingrese la altura del triangulo"));
 
+// calcular el area
 let area = (base * altura) / 2;
 
-console.log("El area del triangulo es: " + area);
+// mostrar los datos
+document.write("Base: " + base + "<br>");
+document.write("Altura: " + altura + "<br>");
+document.write("Area del triangulo: " + area);

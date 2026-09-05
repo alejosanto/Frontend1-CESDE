@@ -1,74 +1,12 @@
 <!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Taller 2 - Condicionales</title>
-    <style>
-        body { font-family: Arial, sans-serif; max-width: 950px; margin: 40px auto; padding: 0 20px; }
-        .ejercicio { display: grid; grid-template-columns: 130px 1fr; gap: 18px; align-items: center; padding: 16px 0; border-bottom: 1px solid #ddd; }
-        .ejercicio a { display: inline-block; padding: 10px 14px; border: 1px solid #333; text-decoration: none; color: #111; border-radius: 6px; text-align: center; }
-        .ejercicio a:hover { background: #eee; }
-        .ejercicio p { margin: 0; line-height: 1.45; }
-        #resultado { margin-top: 28px; padding: 16px; border: 1px solid #999; border-radius: 6px; min-height: 80px; white-space: pre-line; }
-        @media (max-width: 650px) { .ejercicio { grid-template-columns: 1fr; } }
-    </style>
-</head>
-<body>
-    <h1>Taller 2 - Condicionales</h1>
-    <p>Ejercicios para tomar decisiones en JavaScript usando condiciones, comparaciones y estructuras <code>if</code>, <code>else if</code>, <code>else</code> y <code>switch</code>.</p>
-
-    <div class="ejercicio"><a href="?ejercicio=1">Ejercicio 1</a><p><strong>Paridad y signo:</strong> pedir un número y determinar si es par o impar y si es positivo o negativo.</p></div>
-    <div class="ejercicio"><a href="?ejercicio=2">Ejercicio 2</a><p><strong>Mayor y menor:</strong> pedir dos números y determinar cuál es mayor, cuál es menor o si son iguales.</p></div>
-    <div class="ejercicio"><a href="?ejercicio=3">Ejercicio 3</a><p><strong>Día de la semana:</strong> pedir un número del 1 al 7 y mostrar el día correspondiente.</p></div>
-    <div class="ejercicio"><a href="?ejercicio=4">Ejercicio 4</a><p><strong>Etapa según la edad:</strong> clasificar a una persona como adolescente, adulto adolescente, adulto o adulto mayor.</p></div>
-    <div class="ejercicio"><a href="?ejercicio=5">Ejercicio 5</a><p><strong>Factura y forma de pago:</strong> sumar tres productos y calcular el total según pago en efectivo, cupón con 3% de descuento o crédito con 5% de aumento.</p></div>
-    <div class="ejercicio"><a href="?ejercicio=6">Ejercicio 6</a><p><strong>Nivel según promedio:</strong> ingresar tres notas, calcular el promedio y clasificarlo como Malo, Debe recuperar, Regular, Bueno o Muy bueno.</p></div>
-    <div class="ejercicio"><a href="?ejercicio=7">Ejercicio 7</a><p><strong>Edad actual:</strong> ingresar día, mes y año de nacimiento y calcular la edad actual usando <code>new Date()</code>.</p></div>
-    <div class="ejercicio"><a href="?ejercicio=8">Ejercicio 8</a><p><strong>Clínica Me Muero:</strong> calcular el costo de hospitalización según días y edad del paciente, incluyendo el valor diario y los recargos correspondientes.</p></div>
-
-    <h2>Resultado</h2>
-    <div id="resultado">Seleccione un ejercicio para comenzar.</div>
-
-    <script>
-        const resultado = document.getElementById("resultado");
-        const promptOriginal = window.prompt;
-        const alertOriginal = window.alert;
-        const logOriginal = console.log;
-
-        function agregarResultado(texto) {
-            if (resultado.textContent === "Seleccione un ejercicio para comenzar.") resultado.textContent = "";
-            resultado.textContent += texto + "\n";
-        }
-
-        window.prompt = function(mensaje) {
-            const respuesta = promptOriginal(mensaje);
-            agregarResultado(mensaje + ": " + respuesta);
-            return respuesta;
-        };
-
-        window.alert = function(mensaje) {
-            agregarResultado(mensaje);
-            alertOriginal(mensaje);
-        };
-
-        console.log = function(...datos) {
-            agregarResultado(datos.join(" "));
-            logOriginal(...datos);
-        };
-
-        const parametros = new URLSearchParams(window.location.search);
-        const ejercicio = parametros.get("ejercicio");
-
-        if (ejercicio >= 1 && ejercicio <= 8) {
-            //quitar el ejercicio de la URL para que al refrescar no se vuelva a ejecutar
-            history.replaceState({}, document.title, window.location.pathname);
-
-            resultado.textContent = "";
-            const script = document.createElement("script");
-            script.src = "ejercicio" + ejercicio + ".js";
-            document.body.appendChild(script);
-        }
-    </script>
-</body>
-</html>
+<html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Taller 2 - Condicionales</title><style>body{font-family:Arial,sans-serif;max-width:950px;margin:40px auto;padding:0 20px}.volver{display:inline-block;margin-bottom:20px;text-decoration:none;color:#111}.ejercicio{display:grid;grid-template-columns:130px 1fr;gap:18px;align-items:center;padding:16px 0;border-bottom:1px solid #ddd}.ejercicio a{display:inline-block;padding:10px 14px;border:1px solid #333;text-decoration:none;color:#111;border-radius:6px;text-align:center}.ejercicio a:hover{background:#eee}.ejercicio p{margin:0;line-height:1.45}#resultado{margin-top:28px;padding:16px;border:1px solid #999;border-radius:6px;min-height:80px}@media(max-width:650px){.ejercicio{grid-template-columns:1fr}}</style></head><body>
+<a class="volver" href="../">← Volver a Frontend 1</a><h1>Taller 2 - Condicionales</h1><p>Ejercicios para tomar decisiones usando condiciones, comparaciones, if, else if, else y switch.</p>
+<div class="ejercicio"><a href="?ejercicio=1">Ejercicio 1</a><p><strong>Paridad y signo:</strong> determinar si un número es par o impar y positivo o negativo.</p></div>
+<div class="ejercicio"><a href="?ejercicio=2">Ejercicio 2</a><p><strong>Mayor y menor:</strong> comparar dos números.</p></div>
+<div class="ejercicio"><a href="?ejercicio=3">Ejercicio 3</a><p><strong>Día de la semana:</strong> ingresar un número del 1 al 7 y mostrar el día.</p></div>
+<div class="ejercicio"><a href="?ejercicio=4">Ejercicio 4</a><p><strong>Etapa según edad:</strong> clasificar a la persona según su edad.</p></div>
+<div class="ejercicio"><a href="?ejercicio=5">Ejercicio 5</a><p><strong>Factura:</strong> calcular el total según efectivo, cupón o crédito.</p></div>
+<div class="ejercicio"><a href="?ejercicio=6">Ejercicio 6</a><p><strong>Nivel según promedio:</strong> calcular promedio de tres notas y clasificarlo.</p></div>
+<div class="ejercicio"><a href="?ejercicio=7">Ejercicio 7</a><p><strong>Edad actual:</strong> calcular la edad a partir de la fecha de nacimiento.</p></div>
+<div class="ejercicio"><a href="?ejercicio=8">Ejercicio 8</a><p><strong>Clínica Me Muero:</strong> calcular hospitalización según días, edad y recargos.</p></div>
+<h2>Resultado</h2><div id="resultado">Seleccione un ejercicio para comenzar.</div><script>const resultado=document.getElementById('resultado');const promptOriginal=window.prompt;const alertOriginal=window.alert;const logOriginal=console.log.bind(console);window.prompt=function(m){const r=promptOriginal(m);resultado.innerHTML+='Pregunta: '+m+'<br>Respuesta: '+r+'<br><br>';return r};window.alert=function(m){resultado.innerHTML+='Mensaje: '+m+'<br><br>';alertOriginal(m)};console.log=function(...d){resultado.innerHTML+=d.join(' ')+'<br>';logOriginal(...d)};document.write=function(t){resultado.innerHTML+=t};const p=new URLSearchParams(window.location.search);const e=p.get('ejercicio');if(e>=1&&e<=8){history.replaceState({},document.title,window.location.pathname);resultado.innerHTML='';const s=document.createElement('script');s.src='ejercicio'+e+'.js';document.body.appendChild(s)}</script></body></html>

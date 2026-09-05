@@ -1,9 +1,15 @@
-// Ejercicio 7 - Promedio de 3 notas
+// Ejercicio 7 - promedio de 3 notas
 
-let nota1 = parseFloat(prompt("Ingrese la primera nota de 1 a 5"));
-let nota2 = parseFloat(prompt("Ingrese la segunda nota de 1 a 5"));
-let nota3 = parseFloat(prompt("Ingrese la tercera nota de 1 a 5"));
+// pedir las notas
+let nota1 = Number(prompt("Ingrese la nota 1"));
+let nota2 = Number(prompt("Ingrese la nota 2"));
+let nota3 = Number(prompt("Ingrese la nota 3"));
 
+// calcular el promedio
 let promedio = (nota1 + nota2 + nota3) / 3;
 
-console.log("El promedio de las notas es: " + promedio);
+// mostrar los datos
+document.write("Nota 1: " + nota1 + "<br>");
+document.write("Nota 2: " + nota2 + "<br>");
+document.write("Nota 3: " + nota3 + "<br>");
+document.write("Promedio: " + promedio);

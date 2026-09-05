@@ -1,12 +1,15 @@
-// Ejercicio 6 - Porcentaje de alumnos y alumnas
+// Ejercicio 6 - porcentaje de alumnos y alumnas
 
-let hombres = parseInt(prompt("Ingrese la cantidad de alumnos hombres"));
-let mujeres = parseInt(prompt("Ingrese la cantidad de alumnas mujeres"));
+// pedir la cantidad de estudiantes
+let hombres = Number(prompt("Ingrese la cantidad de alumnos hombres"));
+let mujeres = Number(prompt("Ingrese la cantidad de alumnas mujeres"));
 
+// calcular los porcentajes
 let total = hombres + mujeres;
 let porcentajeHombres = (hombres * 100) / total;
 let porcentajeMujeres = (mujeres * 100) / total;
 
-console.log("Total de estudiantes: " + total);
-console.log("Porcentaje de hombres: " + porcentajeHombres + "%");
-console.log("Porcentaje de mujeres: " + porcentajeMujeres + "%");
+// mostrar los datos
+document.write("Total estudiantes: " + total + "<br>");
+document.write("Porcentaje hombres: " + porcentajeHombres + "%<br>");
+document.write("Porcentaje mujeres: " + porcentajeMujeres + "%");
