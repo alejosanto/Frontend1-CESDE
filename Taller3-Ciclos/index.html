@@ -8,7 +8,8 @@
         body { font-family: Arial, sans-serif; max-width: 850px; margin: 40px auto; padding: 0 20px; }
         a { display: inline-block; margin: 6px; padding: 10px 14px; border: 1px solid #333; text-decoration: none; color: #111; border-radius: 6px; }
         a:hover { background: #eee; }
-        #resultado { margin-top: 25px; padding: 15px; border: 1px solid #ccc; min-height: 40px; }
+        .bloque { margin-top: 22px; padding: 16px; border: 1px solid #999; border-radius: 6px; }
+        #resultado { white-space: pre-line; }
     </style>
 </head>
 <body>
@@ -27,14 +28,31 @@
         <a href="?ejercicio=9">Ejercicio 9</a>
     </div>
 
-    <p id="mensaje"></p>
-    <div id="resultado"><strong>Resultado:</strong><br></div>
+    <div class="bloque">
+        <h2>¿Qué pide el ejercicio?</h2>
+        <p id="enunciado">Seleccione un ejercicio para ver el enunciado.</p>
+        <p id="datos"></p>
+    </div>
+
+    <div class="bloque">
+        <h2>Resultado</h2>
+        <div id="resultado">Seleccione un ejercicio para comenzar.</div>
+    </div>
 
     <script>
-        const parametros = new URLSearchParams(window.location.search);
-        const ejercicio = parametros.get("ejercicio");
-        const resultado = document.getElementById("resultado");
+        const ejercicios = {
+            1: { enunciado: "Calcular la suma de los N números naturales, donde N es el número límite ingresado.", datos: "Dato solicitado: número límite N." },
+            2: { enunciado: "Pedir el nombre de un estudiante y N notas, calcular el promedio y determinar si aprueba o reprueba. Aprueba con promedio de 3.", datos: "Datos solicitados: nombre, cantidad de notas y cada nota." },
+            3: { enunciado: "Ingresar varios números enteros, mostrar cuántos se ingresaron y la suma de todos. Repetir hasta escribir FIN.", datos: "Datos solicitados: números enteros hasta ingresar FIN." },
+            4: { enunciado: "Realizar la tabla de multiplicar de cualquier número ingresado hasta el 30.", datos: "Dato solicitado: número de la tabla." },
+            5: { enunciado: "Crear la tabla de multiplicar de cualquier número ingresado de manera descendente.", datos: "Dato solicitado: número de la tabla." },
+            6: { enunciado: "Crear un ciclo que cuente del 1 al 30 en intervalos del número ingresado.", datos: "Dato solicitado: tamaño del intervalo." },
+            7: { enunciado: "Crear un ciclo que cuente del 1 al 30 en intervalos del número ingresado, de manera regresiva.", datos: "Dato solicitado: tamaño del intervalo." },
+            8: { enunciado: "Pedir la edad a 10 estudiantes y determinar cuántos son menores de edad y cuántos son mayores de edad.", datos: "Datos solicitados: edad de 10 estudiantes." },
+            9: { enunciado: "Generar un número aleatorio y compararlo con el número que digite el usuario. Tiene 3 intentos para acertar.", datos: "Datos solicitados: número del usuario en cada intento." }
+        };
 
+        const resultado = document.getElementById("resultado");
         const promptOriginal = window.prompt;
         const alertOriginal = window.alert;
         const writeOriginal = document.write.bind(document);
@@ -42,12 +60,12 @@
 
         window.prompt = function(mensaje) {
             const respuesta = promptOriginal(mensaje);
-            resultado.innerHTML += "Pregunta: " + mensaje + "<br>Respuesta: " + respuesta + "<br><br>";
+            resultado.innerHTML += "Dato ingresado - " + mensaje + ": " + respuesta + "<br>";
             return respuesta;
         };
 
         window.alert = function(mensaje) {
-            resultado.innerHTML += "Mensaje: " + mensaje + "<br><br>";
+            resultado.innerHTML += "Resultado: " + mensaje + "<br>";
             alertOriginal(mensaje);
         };
 
@@ -60,8 +78,13 @@
             resultado.innerHTML += texto;
         };
 
-        if (ejercicio >= 1 && ejercicio <= 9) {
-            document.getElementById("mensaje").textContent = "Ejecutando ejercicio " + ejercicio;
+        const parametros = new URLSearchParams(window.location.search);
+        const ejercicio = parametros.get("ejercicio");
+
+        if (ejercicios[ejercicio]) {
+            document.getElementById("enunciado").textContent = ejercicios[ejercicio].enunciado;
+            document.getElementById("datos").textContent = ejercicios[ejercicio].datos;
+            resultado.innerHTML = "";
             const script = document.createElement("script");
             script.src = "ejercicio" + ejercicio + ".js";
             document.body.appendChild(script);
