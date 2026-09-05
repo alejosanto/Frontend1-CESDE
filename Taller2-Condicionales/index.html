@@ -8,6 +8,7 @@
         body { font-family: Arial, sans-serif; max-width: 800px; margin: 40px auto; padding: 0 20px; }
         a { display: inline-block; margin: 6px; padding: 10px 14px; border: 1px solid #333; text-decoration: none; color: #111; border-radius: 6px; }
         a:hover { background: #eee; }
+        #resultado { margin-top: 24px; padding: 16px; border: 1px solid #999; border-radius: 6px; min-height: 80px; white-space: pre-line; }
     </style>
 </head>
 <body>
@@ -27,12 +28,44 @@
 
     <p id="mensaje"></p>
 
+    <h2>Resultado</h2>
+    <div id="resultado">Seleccione un ejercicio para comenzar.</div>
+
     <script>
+        const resultado = document.getElementById("resultado");
+        const promptOriginal = window.prompt;
+        const alertOriginal = window.alert;
+        const logOriginal = console.log;
+
+        function agregarResultado(texto) {
+            if (resultado.textContent === "Seleccione un ejercicio para comenzar.") {
+                resultado.textContent = "";
+            }
+            resultado.textContent += texto + "\n";
+        }
+
+        window.prompt = function(mensaje) {
+            const respuesta = promptOriginal(mensaje);
+            agregarResultado(mensaje + ": " + respuesta);
+            return respuesta;
+        };
+
+        window.alert = function(mensaje) {
+            agregarResultado(mensaje);
+            alertOriginal(mensaje);
+        };
+
+        console.log = function(...datos) {
+            agregarResultado(datos.join(" "));
+            logOriginal(...datos);
+        };
+
         const parametros = new URLSearchParams(window.location.search);
         const ejercicio = parametros.get("ejercicio");
 
         if (ejercicio >= 1 && ejercicio <= 8) {
             document.getElementById("mensaje").textContent = "Ejecutando ejercicio " + ejercicio;
+            resultado.textContent = "";
             const script = document.createElement("script");
             script.src = "ejercicio" + ejercicio + ".js";
             document.body.appendChild(script);
